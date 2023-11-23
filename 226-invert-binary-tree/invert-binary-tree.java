@@ -19,19 +19,12 @@ class Solution {
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
+
+        sol(root.left);
+        sol(root.right);
     }
     public TreeNode invertTree(TreeNode root) {
-        if(root == null) return null;
-        Queue<TreeNode> h = new LinkedList<>();
-        h.add(root);
-        while(h.size()>0){
-            for(int i = 0; i<h.size(); i++){
-                TreeNode temp = h.remove();
-                sol(temp);
-                if(temp.left != null) h.add(temp.left);
-                if(temp.right != null) h.add(temp.right);
-            }
-        }
+        sol(root);
         return root;
     }
 }
